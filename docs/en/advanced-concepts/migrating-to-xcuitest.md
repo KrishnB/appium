@@ -17,6 +17,10 @@ This does not however guarantee that your tests will work exactly the same, for 
 
 As mentioned just above, if you rely on the app source XML from the `page source` command, the XML output will now differ significantly from what it was under UIAutomation.
 
+### `-ios uiautomation` locator strategy
+
+This locator strategy was specifically built on UIAutomation, so it is not included in the XCUITest automation backend. We will be working on a similar "native"-type locator strategy in coming releases.
+
 ### System dependencies
 
 In addition to the many gotchas that might come with upgrading any XCode installation (unrelated to Appium), Appium's XCUITest support requires a new system dependency: [Carthage](https://github.com/Carthage/Carthage). Appium Doctor has now been updated to ensure that the `carthage` binary is on your path.
@@ -24,5 +28,17 @@ In addition to the many gotchas that might come with upgrading any XCode install
 ### API differences
 
 Unfortunately, the XCUITest API and the UIAutomation API are not equivalent. In many cases (like with `tap/click`), the behavior is identical. But some features that were available in the UIAutomation backend are not yet available in the new XCUITest backend. These known lacking features include:
-
 * Geolocation support (e.g., `driver.location`)
+* Shaking the device
+* Locking the device
+* Rotating the device (note that this is *NOT* device _orientation_, which is supported)
+
+We will endeavor to add these features back in future releases of Appium.
+
+### Other known issues
+
+Finally, a list of known issues with the initial 1.6 release:
+
+* [Problems with processArguments](https://github.com/appium/appium/issues/6888)
+
+As far as possible, we will add the missing features and fix other known issues in the [1.6.1 Milestone](https://github.com/appium/appium/milestone/27), so following that may be of interest to you.
